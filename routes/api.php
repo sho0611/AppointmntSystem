@@ -2,10 +2,16 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-//先ほど作成したGoogleCalendarControllerを読み込む    
-use App\Http\Controllers\GoogleCalendarController;
+use App\Http\Controllers\CustomerAppointmentController;
 
-Route::post('/create-event', [GoogleCalendarController::class, 'createEvent']);
+
+Route::prefix('app')->group(function () {
+    Route::post('/a', [CustomerAppointmentController::class, 'appointment']);
+    Route::put('/{eventId}', [CustomerAppointmentController::class, 'cangeAppointmnt']);
+    Route::delete('/{eventId}', [CustomerAppointmentController::class, 'deleteAppointmnt']);    
+  
+});
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
