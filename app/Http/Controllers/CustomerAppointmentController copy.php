@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Google\Client;
 use Google\Service\Calendar\Event as Google_Service_Calendar_Event;
 use Google\Service\Calendar as Calendar;        
-use App\Models\CustomerAppointment as Appointment;   
+use App\Models\Appointment;  
 use App\Http\Requests\StoreAppointmentRequest;  
 use Carbon\Carbon;
 use Google\Service\Exception;
@@ -109,7 +109,8 @@ class CustomerAppointmentController extends Controller
                 'timeZone' => 'Asia/Tokyo',
             ],
             'description' => $request->appointmntDetail, 
-            'location' => $request->appointmntCustomerPhoneNumber,  
+            'number' => $request->appointmntCustomerPhoneNumber,  
+            'email' => $request->appointmntCustomerEmail,   
         ]);
 
         try {
@@ -133,11 +134,12 @@ class CustomerAppointmentController extends Controller
             } 
     
             $appointment->update([
-                'appointmntCustomerName' => $request->appointmntCustomerName,
+                'appointmntCustomerName' => $request->customerName,
                 'appointmntDate' => $request->appointmntDate,
                 'appointmntTime' => $request->appointmntTime,
                 'appointmntCustomerPhoneNumber' => $request->appointmntCustomerPhoneNumber,
-                'appointmntDetail' => $request->appointmntDetail,   
+                'appointmntDetail' => $request->appointmntDetail, 
+                'appointmntCustomerEmail' => $request->appointmntCustomerEmail,   
             ]); 
     
             return response()->json([

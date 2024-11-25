@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id('appointment_id');
             $table->string('google_event_id')->unique(); 
-            $table->string('appointmntCustomerName');  
+            $table->string('customerName');  
             $table->string('appointmntDate');  
             $table->string('appointmntTime'); 
-            $table->string('appointmntDetail');
-            $table->string('appointmntCustomerPhoneNumber');    
+            $table->string('detail');
+            $table->string('phoneNumber');  
+            $table->string('email')->nullable();
             $table->timestamps();  
-});
-
+        });
     }
 
     /**
