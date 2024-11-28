@@ -52,6 +52,7 @@ class AppointmentController extends Controller
             DB::commit();
 
             return response()->json([
+                'success' => true,
                 'message' => '予約が完了しました',
                 'eventId' => $appointmentIntoCalenderId
             ], 201);
@@ -64,6 +65,7 @@ class AppointmentController extends Controller
         } catch (\Exception $e) {
             DB::rollBack(); 
             return response()->json([
+                'success' => false,
                 'error' => '予約作成に失敗しました: ' . $e->getMessage() . '。もう一度お試しください。'
             ], 500);
         }
