@@ -15,10 +15,6 @@ class PropertyController extends Controller
     {
         DB::beginTransaction();
 
-        return response()->json([
-            'request' => $request->all(),   
-        ]); 
-    
         try {
             $property = Property::create([
                 'title' => $request->title,
@@ -43,11 +39,7 @@ class PropertyController extends Controller
     
             DB::commit();
     
-            return response()->json([
-                'message' => '物件と画像が正常に保存されました。',
-                'property' => $property,
-                
-            ]);
+            return response()->json(['success' => true, 'message' => '物件情報が更新されました'], 201); 
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -79,10 +71,7 @@ class PropertyController extends Controller
 
             DB::commit();
 
-            return response()->json([
-                'message' => '物件情報が更新されました。',
-                'property' => $property,
-            ]);
+            return response()->json(['success' => true, 'message' => '物件情報が更新されました'], 200);
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -100,7 +89,6 @@ class PropertyController extends Controller
         try {
             
             $property = Property::find($propertyId);
-            // $image = PropertyImage::where('property_id', $propertyId)->get();   
 
             if (!$property) {
                 return response()->json([
@@ -109,13 +97,10 @@ class PropertyController extends Controller
             }
 
             $property->delete();
-            // $image->delete();   
 
             DB::commit();
 
-            return response()->json([
-                'message' => '物件が削除されました。',
-            ]);
+            return response()->json(['success' => true, 'message' => '物件情報が更新されました'], 200); 
 
         } catch (\Exception $e) {
             DB::rollBack();

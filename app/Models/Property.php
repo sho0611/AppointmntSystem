@@ -13,7 +13,7 @@ class Property extends Model
     protected $primaryKey = 'property_id';     
 
     protected $fillable = [
-        'title', 'description', 'address', 'price',
+        'title', 'description', 'price',
     ];
 
     public static function getPropertiesWithImages()

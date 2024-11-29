@@ -11,7 +11,8 @@ use App\Notifications\AppointmentChangedNotification;
 use App\Models\Admin;
 use App\Notifications\AppointmentCreatedNotificationToAdmin;
 use App\Notifications\AppointmentChangedNotificationToAdmin;  
-use App\Notifications\AppointmentDeletedNotificationToAdmin;  
+use App\Notifications\AppointmentDeletedNotificationToAdmin; 
+
 
 class AppointmentController extends Controller
 {
@@ -31,6 +32,8 @@ class AppointmentController extends Controller
      */ 
     public function appointment(StoreAppointmentRequest $request)   
     {
+
+
         DB::beginTransaction(); 
     
         try {

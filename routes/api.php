@@ -7,16 +7,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PropertyController;   
 use App\Http\Controllers\ViewPropertyController;
 
-Route::prefix('app')->group(function () {
-    Route::post('/a', [AppointmentController::class, 'appointment']);
+Route::prefix('appointment')->group(function () {
+    Route::post('/post', [AppointmentController::class, 'appointment']);
     Route::put('/{eventId}', [AppointmentController::class, 'changeAppointment']);
     Route::delete('/{eventId}', [AppointmentController::class, 'deleteAppointment']);    
 });
 
-Route::prefix('p')->controller(PropertyController::class)
-->group(function () {
-    Route::post('/post','postProperty');
-}); 
 
 Route::prefix('property')->controller(PropertyController::class)
 ->group(function () {
@@ -31,21 +27,29 @@ Route::prefix('viewproperty')->controller(ViewPropertyController::class)
     Route::get('/{propertyId}','viewPropertyById');
 });
 
-Route::get('/home', function () {
-    return view('homePage');
+
+Route::get('/index', function () {
+    return view('index');
 });
 
-Route::get('/appointmentForm/{propertyId}', function ($propertyId) {
-    return view('appointmentForm', ['propertyId' => $propertyId]);
+Route::get('/form/{propertyId}', function ($propertyId) {
+    return view('appointment/form', ['propertyId' => $propertyId]);
 });
 
+//不動産内容の編集画面
+Route::get('/property/list', function () {
+    return view('property/list');
+}); 
+
+Route::get('/property/{propertyId}', function ($propertyId) {
+    return view('property/edit', ['propertyId' => $propertyId]);
+});
+
+//不動産内容投稿
 Route::get('/property', function () {
-    return view('propaty');
+    return view('property/post');
 });
 
-Route::get('/upDateProperty', function () {
-    return view('propaty');
-});
 
 
 Route::prefix('admin')->group(function () {
