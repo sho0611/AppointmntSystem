@@ -29,9 +29,12 @@
             </div>
 
             <div class="mb-3">
-                <label for="images" class="form-label">画像</label>
-                <input type="file" class="form-control" id="images" name="images[]" multiple>
+            <label for="images" class="form-label">画像</label>
+            <input type="file"  class="form-control" id="images" name="images[]" multiple>
             </div>
+
+
+
 
             <button type="submit" class="btn btn-primary">投稿する</button>
         </form>

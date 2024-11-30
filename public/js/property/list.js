@@ -6,14 +6,17 @@ window.onload = function() {
             let html = '';
             properties.forEach(property => {
                 html += `
+        
             <div>
             <h2><a href="/api/property/${property.property_id}">${property.title}</a></h2>
             <p>${property.description}</p>
             <p>価格: ¥${property.price}</p>
-            ${property.image_path ? `<img src="http://localhost/storage/property_images/${property.image_path}" alt="画像" width="300">` : '<p>画像はありません</p>'}
+            
+            ${property.image_path ? `<img src="http://127.0.0.1:8000/storage/${property.image_path}" alt="画像" width="300">` : '<p>画像はありません</p>'}
             </div>
             <hr>
-        `;
+            `;
+
             });
             //innerHTMLの時にXSS対策が必要  
             document.getElementById('properties-list').innerHTML = html;
