@@ -16,17 +16,17 @@
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">物件名</label>
-            <input type="text" class="form-control" id="title" name="title" required>
+            <input type="text" class="form-control" id="title" name="title">
         </div>
 
         <div class="mb-3">
             <label for="description" class="form-label">物件説明</label>
-            <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+            <textarea class="form-control" id="description" name="description" rows="4"></textarea>
         </div>
 
         <div class="mb-3">
-            <label for="price" class="form-label">価格</label>
-            <input type="number" class="form-control" id="price" name="price" required>
+            <label for="price" class="form-label">家賃/月</label>
+            <input type="number" class="form-control" id="price" name="price">
         </div>
 
 

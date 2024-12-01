@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <title>物件情報一覧</title>
 </head>
 <body>
     <h1>物件情報一覧</h1>
     <div id="properties-list">
-        
+
     </div>
 
     <script src="{{ asset('js/index/index.js') }}"></script>

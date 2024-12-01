@@ -1,4 +1,3 @@
-
 const propertyId = window.location.pathname.split('/')[3];
 
 fetch(`http://127.0.0.1:8000/api/viewproperty/${propertyId}`)
@@ -7,10 +6,11 @@ fetch(`http://127.0.0.1:8000/api/viewproperty/${propertyId}`)
         if (data.property) {
             const property = data.property;
             document.getElementById('property-details').innerHTML = `
-                <h2>${property.title}</h2>
-                <p>${property.description}</p>
-                <p>価格: ¥${property.price}</p>
-                ${property.image_path ? `<img src="http://localhost/storage/${property.image_path}" alt="画像" width="300">` : '<p>画像はありません</p>'}
+            <div class="property-container">
+                <h2 class="form-property-title">${property.title}</h2>
+                <p class="form-property-description">${property.description}</p>
+                <p class="form-property-price">家賃/月: ¥${parseInt(property.price, 10).toLocaleString()}</p>
+            </div>
             `;
         } else {
             document.getElementById('property-details').innerHTML = '<p>物件情報が見つかりません。</p>';
@@ -18,10 +18,10 @@ fetch(`http://127.0.0.1:8000/api/viewproperty/${propertyId}`)
     })
     .catch(error => console.log('エラーが発生しました:', error));
 
+
 document.getElementById('appointment-form').addEventListener('submit', function(event) {
     event.preventDefault(); 
-    
-    
+
     const formData = { 
         customerName: document.getElementById('customerName').value,
         appointmntDate: document.getElementById('appointmntDate').value,
@@ -29,23 +29,43 @@ document.getElementById('appointment-form').addEventListener('submit', function(
         phoneNumber: document.getElementById('phoneNumber').value,
         email: document.getElementById('email').value,
         detail: document.getElementById('detail').value,
-        // property_id: propertyId
     };
 
 
+    document.getElementById('confirm-customerName').textContent = formData.customerName;
+    document.getElementById('confirm-appointmntDate').textContent = formData.appointmntDate;
+    document.getElementById('confirm-appointmntTime').textContent = formData.appointmntTime;
+    document.getElementById('confirm-phoneNumber').textContent = formData.phoneNumber;
+    document.getElementById('confirm-email').textContent = formData.email;
+    document.getElementById('confirm-detail').textContent = formData.detail;
+
+
+    document.getElementById('confirmation').style.display = 'block';
+    document.getElementById('confirmation-message').style.display = 'block';
+});
+
+
+document.getElementById('confirm-button').addEventListener('click', function() {
     fetch('http://127.0.0.1:8000/api/appointment/post', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         },
-        body: JSON.stringify(formData)       
+        body: JSON.stringify({
+            customerName: document.getElementById('customerName').value,
+            appointmntDate: document.getElementById('appointmntDate').value,
+            appointmntTime: document.getElementById('appointmntTime').value,
+            phoneNumber: document.getElementById('phoneNumber').value,
+            email: document.getElementById('email').value,
+            detail: document.getElementById('detail').value,
+        })
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             alert('予約が完了しました');
-            window.location.href = '/api/index';    
+            window.location.href = '/api/index';
         } else {
             alert('予約に失敗しました');
             console.log(data);
@@ -53,4 +73,3 @@ document.getElementById('appointment-form').addEventListener('submit', function(
     })
     .catch(error => console.log('エラーが発生しました:', error));
 });
-

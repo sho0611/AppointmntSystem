@@ -9,8 +9,7 @@ fetch(`http://127.0.0.1:8000/api/viewproperty/${propertyId}`)
             document.getElementById('property-details').innerHTML = `
                 <h2>${property.title}</h2>
                 <p>${property.description}</p>
-                <p>価格: ¥${property.price}</p>
-                ${property.image_path ? `<img src="http://localhost/storage/${property.image_path}" alt="画像" width="300">` : '<p>画像はありません</p>'}
+                <p>家賃/月: ¥${parseInt(property.price, 10).toLocaleString()}</p>
             `;
         } else {
             document.getElementById('property-details').innerHTML = '<p>物件情報が見つかりません。</p>';

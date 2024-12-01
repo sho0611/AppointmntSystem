@@ -13,11 +13,27 @@ class ViewPropertyController extends Controller
 {
     public function viewProperty()
     {
-        $properties = Property::getPropertiesWithImages();
+
+        $properties = Property::query()->get();
+        $propertiesId = $properties->pluck('property_id');  
+
+        $propertyImages = PropertyImage::query()
+            ->whereIn('property_id', $propertiesId)
+            ->get();
+
+        $properties = $properties->map(function ($property) use ($propertyImages) {
+            $property->images = $propertyImages
+                ->where('property_id', $property->property_id)
+                ->pluck('image_path') 
+                ->toArray(); 
+            return $property;
+        });
+
         return response()->json([
             'properties' => $properties,
         ]); 
     }
+
 
     public function viewPropertyById($propertyId)
     {

@@ -24,7 +24,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="price" class="form-label">価格</label>
+                <label for="price" class="form-label">家賃/月</label>
                 <input type="number" class="form-control" id="price" name="price" required>
             </div>
 

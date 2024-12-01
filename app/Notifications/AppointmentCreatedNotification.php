@@ -44,7 +44,9 @@ class AppointmentCreatedNotification extends Notification
         ->line("時間: {$this->appointment->appointmntTime}")
         ->line("詳細: {$this->appointment->detail}")
         ->line('ご利用ありがとうございます！')
-        ->line('今後ともよろしくお願いいたします！');
+        ->line('今後ともよろしくお願いいたします！')
+        ->line('予約に変更は以下から行えます')
+        ->action('予約内容を変更する', url('http://127.0.0.1:8000/api/detail'.$this->appointment->appointment_id));   
     }
 
     /**

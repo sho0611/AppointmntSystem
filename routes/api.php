@@ -36,6 +36,10 @@ Route::get('/form/{propertyId}', function ($propertyId) {
     return view('appointment/form', ['propertyId' => $propertyId]);
 });
 
+Route::get('/detail', function () {
+    return view('appointment/detail');  
+});
+
 //不動産内容の編集画面
 Route::get('/property/list', function () {
     return view('property/list');
@@ -49,7 +53,6 @@ Route::get('/property/{propertyId}', function ($propertyId) {
 Route::get('/property', function () {
     return view('property/post');
 });
-
 
 
 Route::prefix('admin')->group(function () {

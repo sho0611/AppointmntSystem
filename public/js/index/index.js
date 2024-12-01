@@ -6,16 +6,21 @@ window.onload = function() {
             let html = '';
             properties.forEach(property => {
                 html += `
-                    <div>
-            <h2><a href="form/${property.property_id}">${property.title}</a></h2>
-            <p>${property.description}</p>
-            <p>価格: ¥${property.price}</p>
-            ${property.image_path ? `<img src="http://localhost/storage/${property.image_path}" alt="画像" width="300">` : '<p>画像はありません</p>'}
-            </div>
-            <hr>
-        `;
+            <div class="property-card">
+            <a href="form/${property.property_id}" class="reservation-text">内見はここをクリック</a>
+            <p class="property-title">${property.title}</p>
+                    <p class="property-description">${property.description}</p>
+                    <p class="property-price">家賃/月: ¥${parseInt(property.price, 10).toLocaleString()}</p>
+                    <div class="property-images">
+                        ${property.images && property.images.length > 0
+                            ? property.images.map(image => `<img src="http://127.0.0.1:8000/storage/${image}" alt="画像" width="300">`).join('')
+                            : '<p>画像はありません</p>'}
+                    </div>
+                </div>
+                <hr>
+                `;
             });
-            //innerHTMLの時にXSS対策が必要  
+            
             document.getElementById('properties-list').innerHTML = html;
         })
         .catch(error => console.log('エラーが発生しました:', error));
