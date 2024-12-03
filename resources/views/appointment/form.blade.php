@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <title>物件予約フォーム</title>
+    <title>物件内見予約フォーム</title>
     
 </head>
 <body>  
