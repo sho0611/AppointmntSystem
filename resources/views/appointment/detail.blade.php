@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>予約変更フォーム</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <h1>予約変更フォーム</h1>
 
-    <form action="{{ route('appointments.update', ['appointment' => $appointment->id]) }}" method="POST">
+    <form id="appointment-update-form">
         @csrf
-        @method('PUT') <!-- 更新メソッドを指定 -->
+        @method('PUT') 
+        <input type="hidden" id="appointment-id" value="{{ $appointment->id }}"> 
 
         <div>
             <label for="name">お名前:</label>
@@ -37,12 +39,13 @@
         </div>
     </form>
 
-    <form action="{{ route('appointments.cancel', ['appointment' => $appointment->id]) }}" method="POST" onsubmit="return confirm('本当にキャンセルしますか？')">
+    <form id="appointment-cancel-form">
         @csrf
         @method('DELETE')
+        <input type="hidden" id="appointment-id" value="{{ $appointment->id }}"> 
         <button type="submit" style="color: red;">予約をキャンセルする</button>
     </form>
-
+    <script src="update.js"></script> 
+    <script src="delete.js"></script>
 </body>
 </html>
-
