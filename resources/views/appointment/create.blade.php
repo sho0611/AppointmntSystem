@@ -55,6 +55,6 @@
     <button id="confirm-button">予約を確定する</button>
 </div>
 
-<script src="{{ asset('js/appointment/form.js') }}"></script>
+<script src="{{ asset('js/appointment/create.js') }}"></script>
 </body>
 </html>

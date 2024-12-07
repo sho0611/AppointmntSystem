@@ -33,7 +33,7 @@ Route::get('/index', function () {
 });
 
 Route::get('/form/{propertyId}', function ($propertyId) {
-    return view('appointment/form', ['propertyId' => $propertyId]);
+    return view('appointment/craete', ['propertyId' => $propertyId]);
 });
 
 Route::get('/detail', function () {
