@@ -6,6 +6,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AdminController; 
 use App\Http\Controllers\PropertyController;   
 use App\Http\Controllers\ViewPropertyController;
+use App\Http\Controllers\ViewAppointmentContoller;
 
 Route::prefix('appointment')->group(function () {
     Route::post('/post', [AppointmentController::class, 'appointment']);
@@ -27,18 +28,23 @@ Route::prefix('viewproperty')->controller(ViewPropertyController::class)
     Route::get('/{propertyId}','viewPropertyById');
 });
 
+Route::prefix('viewappointment')->controller(ViewAppointmentContoller::class)
+->group(function () {
+    Route::get('/{appointmentId}','appointmentById');   
+});
 
 Route::get('/index', function () {
     return view('index');
 });
 
 Route::get('/form/{propertyId}', function ($propertyId) {
-    return view('appointment/craete', ['propertyId' => $propertyId]);
+    return view('appointment/create', ['propertyId' => $propertyId]);
 });
 
-Route::get('/detail', function () {
-    return view('appointment/detail');  
+Route::get('/detail/{appointmentId}', function ($appointmentId) {
+    return view('appointment/detail', ['appointmentId' => $appointmentId]);
 });
+
 
 //不動産内容の編集画面
 Route::get('/property/list', function () {

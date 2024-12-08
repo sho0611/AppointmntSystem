@@ -26,5 +26,4 @@ window.onload = function() {
         document.getElementById('add-property-btn').addEventListener('click', function () {
             window.location.href = '/api/property';
         });
-        
 }
