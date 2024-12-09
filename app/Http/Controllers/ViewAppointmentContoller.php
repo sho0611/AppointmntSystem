@@ -7,9 +7,9 @@ use App\Http\Controllers\Controller;
 
 class ViewAppointmentContoller extends Controller
 {
-    public function appointmentById($appointmentId)
+    public function appointmentById($eventId)
     {
-        $appointment = Appointment::where('appointment_id', $appointmentId)->first();   
+        $appointment = Appointment::where('google_event_id', $eventId)->first();   
         if (!$appointment) {
             return response()->json([
                 'error' => '指定された物件が見つかりません。',

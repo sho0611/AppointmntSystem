@@ -17,24 +17,6 @@ class Property extends Model
         'title', 'description', 'address', 'price',
     ];
 
-    public static function getPropertiesWithImages()
-    {
-            // $properties = DB::table('properties')
-            // ->leftJoin('property_images', 'properties.property_id', '=', 'property_images.property_id')
-            // ->select(
-            //     'properties.property_id',
-            //     'properties.title',
-            //     'properties.description',
-            //     'properties.address',
-            //     'properties.price',
-            //     'property_images.image_path'
-            // )
-            // ->get();
-            // $properties = $properties->groupBy('property_id');
-
-            // return $properties;
-    }
-
 
     public function images()
     {

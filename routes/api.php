@@ -30,7 +30,7 @@ Route::prefix('viewproperty')->controller(ViewPropertyController::class)
 
 Route::prefix('viewappointment')->controller(ViewAppointmentContoller::class)
 ->group(function () {
-    Route::get('/{appointmentId}','appointmentById');   
+    Route::get('/{eventId}','appointmentById');   
 });
 
 Route::get('/index', function () {
@@ -41,8 +41,8 @@ Route::get('/form/{propertyId}', function ($propertyId) {
     return view('appointment/create', ['propertyId' => $propertyId]);
 });
 
-Route::get('/detail/{appointmentId}', function ($appointmentId) {
-    return view('appointment/detail', ['appointmentId' => $appointmentId]);
+Route::get('/detail/{eventId}', function ($eventId) {
+    return view('appointment/detail', ['appointmentId' => $eventId]);
 });
 
 

@@ -102,6 +102,7 @@ class AppointmentController extends Controller
             DB::commit();
 
             return response()->json([
+                'success' => true,
                 'message' => '予約が変更されました',
                 'eventId' => $appointmentIntoCalender->getId()
             ], 201);
@@ -141,9 +142,8 @@ class AppointmentController extends Controller
 
             DB::commit();
 
-
-
             return response()->json([
+                'success' => true,
                 'message' => '予約が削除されました',
             ], 200);
 

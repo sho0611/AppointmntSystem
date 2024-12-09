@@ -1,23 +1,24 @@
-document.getElementById('appointment-update-form').addEventListener('submit', function(e) {
-    e.preventDefault();  
 
-    const formData = new FormData(this);
-    const appointmentId = document.getElementById('appointment-id').value;  
+document.getElementById('delete-button').addEventListener('click', function() {
 
-    fetch(`/appointment/${appointmentId}`, {
-        method: 'PUT',
+    if (confirm('本当に削除しますか？')) {
+    fetch(`http://127.0.0.1:8000/api/appointment/${eventId}`, {
+        method: 'DELETE',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            'Accept': 'application/json',
         },
-        body: formData
     })
     .then(response => response.json())
     .then(data => {
-        alert('予約が変更されました！');
+        if (data.success) {
+            alert('予約を削除しました');
+        } else {
+            alert('削除に失敗しました');
+            console.log(data);
+        }
     })
     .catch(error => {
-        console.error('変更中にエラーが発生しました:', error);
-        alert('変更に失敗しました');
+        console.log('エラーが発生しました:', error);
     });
+}
 });

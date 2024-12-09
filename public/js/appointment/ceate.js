@@ -65,7 +65,6 @@ document.getElementById('confirm-button').addEventListener('click', function() {
     .then(data => {
         if (data.success) {
             alert('予約が完了しました');
-            window.location.href = '/api/index';
         } else {
             alert('予約に失敗しました');
             console.log(data);
