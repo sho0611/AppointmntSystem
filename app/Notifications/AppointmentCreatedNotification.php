@@ -46,7 +46,7 @@ class AppointmentCreatedNotification extends Notification
         ->line('ご利用ありがとうございます！')
         ->line('今後ともよろしくお願いいたします！')
         ->line('予約に変更は以下から行えます')
-        ->action('予約内容を変更する', url('http://127.0.0.1:8000/api/detail'.$this->appointment->eventId));   
+        ->action('予約内容を変更する', url('http://127.0.0.1:8000/api/detail/'.$this->appointment->google_event_id));   
     }
 
     /**

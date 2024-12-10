@@ -57,7 +57,7 @@ class AppointmentController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => '予約が完了しました',
-                'eventId' => $appointmentIntoCalenderId
+                'eventId' => $appointmentIntoCalenderId,
             ], 201);
     
         } catch (\Google_Service_Exception $e) {
